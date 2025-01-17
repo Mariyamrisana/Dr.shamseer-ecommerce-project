@@ -3,12 +3,10 @@ const express = require('express');
 const cors = require('cors');
 const { connectDatabase } = require('./utils/database');
 
-const productRoutes = require('./routes/productRoutes');
-//const adminRoutes = require('./routes/adminRoutes');
-//const userRoutes = require('./routes/userRoutes');
-//const orderRoutes = require('./routes/orderRoutes');
-//const wishlistRoutes = require('./routes/wishlistRoutes');
-//const { errorHandler } = require('./middlewares/errorMiddleware');
+const authRoute = require('./routes/authRoute');
+const adminRoute = require('./routes/adminRoutes');
+const userRoute = require('./routes/userRoutes');
+const { errorHandler } = require('./middlewares/errorMiddleware');
 
 const app = express();
 
@@ -23,14 +21,13 @@ app.use(express.urlencoded({ extended: true }));
     await connectDatabase();
 
     // Routes
-   // app.use('/api/user', userRoutes);
-   // app.use('/api/admin', adminRoutes);
-    //app.use('/api/order', orderRoutes);
-    app.use('/api/products', productRoutes);
-   // app.use('/api/wishlist', wishlistRoutes);
+   app.use('/api/user', userRoute);
+   app.use('/api/admin', adminRoute);
+   app.use('/api/auth', authRoute);
+
 
     // Error handling middleware
-    //app.use(errorHandler);
+    app.use(errorHandler);
 
     // Start the server
     const PORT = process.env.PORT || 5000;
