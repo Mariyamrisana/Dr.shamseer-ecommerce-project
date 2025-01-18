@@ -4,8 +4,8 @@ const cors = require('cors');
 const { connectDatabase } = require('./utils/database');
 
 const authRoute = require('./routes/authRoute');
-const adminRoute = require('./routes/adminRoutes');
-const userRoute = require('./routes/userRoutes');
+//const adminRoute = require('./routes/adminRoutes');
+//const userRoute = require('./routes/userRoutes');
 const { errorHandler } = require('./middlewares/errorMiddleware');
 
 const app = express();
@@ -21,8 +21,8 @@ app.use(express.urlencoded({ extended: true }));
     await connectDatabase();
 
     // Routes
-   app.use('/api/user', userRoute);
-   app.use('/api/admin', adminRoute);
+   //app.use('/api/user', userRoute);
+   //app.use('/api/admin', adminRoute);
    app.use('/api/auth', authRoute);
 
 
